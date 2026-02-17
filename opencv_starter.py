@@ -2,7 +2,7 @@ import cv2 as cv
 import numpy as np
 import time
 
-#read in an image into memory
+#read in the cameraman image into memory
 img = cv.imread('C:\\Users\\Femi\\OneDrive - Technological University Dublin\\Computer Vision\\cameraman.png', 0)
 copy = img.copy()
 #check out some of its pixel values...img[x,y]..try different x and y values
