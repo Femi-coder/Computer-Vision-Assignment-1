@@ -6,8 +6,8 @@ import time
 img = cv.imread('C:\\Users\\Femi\\OneDrive - Technological University Dublin\\Computer Vision\\cameraman.png', 0)
 copy = img.copy()
 #check out some of its pixel values...img[x,y]..try different x and y values
-x = 100
-y = 100
+x = 20
+y = 200
 pix = img[x,y]
 print("The pixel value at image location [" + str(x) + "," + str(y) + "] is:" + str(pix))
 
