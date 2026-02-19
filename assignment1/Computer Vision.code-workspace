@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "Computer Vision",
+			"path": ".."
+		},
+		{
+			"name": "images",
+			"path": "../../../Downloads/images"
+		}
+	],
+	"settings": {}
+}
