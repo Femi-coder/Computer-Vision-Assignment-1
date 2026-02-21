@@ -1,5 +1,6 @@
 import cv2 as cv
 import numpy as np
+import time
 from histogram import compute_histogram
 from threshold import otsu_threshold
 
@@ -19,20 +20,20 @@ def apply_inverse_threshold(img, T):
 
 img = cv.imread("images/Oring1.jpg", 0)
 
+start = time.time()
+
 hist = compute_histogram(img)
-
-print("Total pixels:", np.sum(hist))
-
 T = otsu_threshold(hist)
-
-print("Otsu threshold:", T)
-
 binary = apply_inverse_threshold(img, T)
 
-cv.imshow("Original", img)
+end = time.time()
 
+print("Total pixels:", np.sum(hist))
+print("Otsu threshold:", T)
+print("Segmentation time (seconds):", end - start)
+
+cv.imshow("Original", img)
 cv.imshow("Binary (Otsu)", binary)
 
 cv.waitKey(0)
-
 cv.destroyAllWindows()
