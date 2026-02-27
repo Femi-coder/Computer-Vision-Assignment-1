@@ -27,3 +27,8 @@ def erosion(binary_img):
             else:
                 output[i, j] = 0
     return output
+
+def closing(binary_img):
+    dilated = dilation(binary_img)
+    closed = erosion(dilated)
+    return closed
