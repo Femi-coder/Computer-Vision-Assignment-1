@@ -4,6 +4,7 @@ import time
 from histogram import compute_histogram
 from threshold import otsu_threshold
 from morphology import closing
+from ccl import connected_components
 
 def apply_inverse_threshold(img, T):
     out = np.zeros_like(img, dtype=np.uint8)
@@ -27,12 +28,15 @@ hist = compute_histogram(img)
 T = otsu_threshold(hist)
 binary = apply_inverse_threshold(img, T)
 cleaned = closing(binary)
+labels, sizes = connected_components(cleaned)
 
 end = time.time()
 
 print("Total pixels:", np.sum(hist))
 print("Otsu threshold:", T)
 print("Segmentation time (seconds):", end - start)
+print("Number of components:", len(sizes))
+print("Component sizes:", sizes)
 
 cv.imshow("Original", img)
 cv.imshow("Binary (Otsu)", binary)
