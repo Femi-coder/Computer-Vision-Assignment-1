@@ -20,7 +20,7 @@ def apply_inverse_threshold(img, T):
 
     return out
 
-img = cv.imread("images/Oring1.jpg", 0)
+img = cv.imread("images/Oring5.jpg", 0)
 
 start = time.time()
 
