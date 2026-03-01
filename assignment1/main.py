@@ -3,6 +3,7 @@ import numpy as np
 import time
 from histogram import compute_histogram
 from threshold import otsu_threshold
+from morphology import closing
 
 def apply_inverse_threshold(img, T):
     out = np.zeros_like(img, dtype=np.uint8)
@@ -25,6 +26,7 @@ start = time.time()
 hist = compute_histogram(img)
 T = otsu_threshold(hist)
 binary = apply_inverse_threshold(img, T)
+cleaned = closing(binary)
 
 end = time.time()
 
@@ -34,6 +36,7 @@ print("Segmentation time (seconds):", end - start)
 
 cv.imshow("Original", img)
 cv.imshow("Binary (Otsu)", binary)
+cv.imshow("After Closing", cleaned)
 
 cv.waitKey(0)
 cv.destroyAllWindows()
