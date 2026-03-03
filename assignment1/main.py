@@ -20,7 +20,7 @@ def apply_inverse_threshold(img, T):
 
     return out
 
-img = cv.imread("images/Oring5.jpg", 0)
+img = cv.imread("images/Oring1.jpg", 0)
 
 start = time.time()
 
@@ -29,6 +29,8 @@ T = otsu_threshold(hist)
 binary = apply_inverse_threshold(img, T)
 cleaned = closing(binary)
 labels, sizes = connected_components(cleaned)
+largest_label = max(sizes, key=sizes.get)
+largest_size = sizes[largest_label]
 
 end = time.time()
 
@@ -37,10 +39,22 @@ print("Otsu threshold:", T)
 print("Segmentation time (seconds):", end - start)
 print("Number of components:", len(sizes))
 print("Component sizes:", sizes)
+print("Largest component label:", largest_label)
+print("Largest component size:", largest_size)
+
+# Create mask for largest component
+ring_only = np.zeros_like(cleaned, dtype=np.uint8)
+
+rows, cols = labels.shape
+for i in range(rows):
+    for j in range(cols):
+        if labels[i, j] == largest_label:
+            ring_only[i, j] = 255
 
 cv.imshow("Original", img)
 cv.imshow("Binary (Otsu)", binary)
 cv.imshow("After Closing", cleaned)
+cv.imshow("Largest Component", ring_only)
 
 cv.waitKey(0)
 cv.destroyAllWindows()
