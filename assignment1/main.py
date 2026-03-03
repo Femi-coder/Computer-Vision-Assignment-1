@@ -42,6 +42,22 @@ print("Component sizes:", sizes)
 print("Largest component label:", largest_label)
 print("Largest component size:", largest_size)
 
+# Minimum area to be considered a real ring piece
+min_area = 1000
+
+# Find all components larger than threshold
+large_components = [label for label, size in sizes.items() if size > min_area]
+
+print("Large components:", large_components)
+
+if len(large_components) == 1:
+    result = "PASS"
+else:
+    result = "FAIL"
+
+print("RESULT:", result)
+
+
 # Create mask for largest component
 ring_only = np.zeros_like(cleaned, dtype=np.uint8)
 
