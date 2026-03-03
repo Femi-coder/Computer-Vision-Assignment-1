@@ -28,6 +28,7 @@ hist = compute_histogram(img)
 T = otsu_threshold(hist)
 binary = apply_inverse_threshold(img, T)
 cleaned = closing(binary)
+cleaned = np.where(cleaned > 0, 255, 0).astype(np.uint8)
 labels, sizes = connected_components(cleaned)
 largest_label = max(sizes, key=sizes.get)
 largest_size = sizes[largest_label]
