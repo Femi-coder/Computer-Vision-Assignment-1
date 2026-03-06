@@ -20,7 +20,7 @@ def apply_inverse_threshold(img, T):
 
     return out
 
-img = cv.imread("images/Oring1.jpg", 0)
+img = cv.imread("images/Oring4.jpg", 0)
 
 start = time.time()
 
@@ -44,7 +44,7 @@ print("Largest component label:", largest_label)
 print("Largest component size:", largest_size)
 
 # Minimum area to be considered a real ring piece
-min_area = 1000
+min_area = 6000
 
 # Find all components larger than threshold
 large_components = [label for label, size in sizes.items() if size > min_area]
